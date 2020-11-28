@@ -19,7 +19,7 @@ locale                   : "en-US"
 title                    : "Dylan Bragdon"
 title_separator          : "-"
 subtitle                 : 
-name                     : "Dylan Bragdon"
+name                     : "About Me"
 description              : "Welcome! This is my personal website."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
