@@ -25,7 +25,7 @@ plt.yticks(np.arange(0, 601, 50))
 plt.show()
 ```
 
-![](parkinsons-images/park1.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/parkinsons-images/park1.png)
 
 The data is pretty unbalanced, so we're probably going to want to use a balanced accuracy metric. 
 
@@ -100,7 +100,7 @@ plt.legend((yes, no), ("Has Parkinson's", "No Parkinson's"))
 plt.show()
 ```
 
-![](parkinsons-images/park2.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/parkinsons-images/park2.png)
 
 
 The graph above gives us an idea of how well two PCs work at linearly separating the data. As we can see, it doesn't do a fantastic job. There is a lot of overlap shown in the predictors, leading us to two possible methods to try out:
@@ -126,7 +126,7 @@ plt.savefig("scree.png")
 plt.show()
 ```
 
-![](parkinsons-images/park3.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/parkinsons-images/park3.png)
 
 
 The model starts to slowly converge after the ~10 PC mark, so it's safe to say that we can get away with using 10 PCs.
@@ -177,7 +177,7 @@ plt.savefig("polyorder.png")
 plt.show()
 ```
 
-![](parkinsons-images/park4.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/parkinsons-images/park4.png)
 
 
 The above graph shows the testing accuracy from fitting the data to multiple different SVM models, with a polynomial ranging from 0 to 15. The results above show that a polynomial order of 5 results in the highest accuracy, so we'll stick with this parameter for our kernel trick. The fact that the above results are cross-validated means that we can be confident in our results.
