@@ -253,7 +253,7 @@ plt.ylabel('Balanced Accuracy')
 plt.show()
 ```
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/results.PNG)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/plottingresults.PNG)
 
 As you can see, model performance has increased to around 75% after only labeling 50 points. This is pretty good for just labeling 50 more points.
 
