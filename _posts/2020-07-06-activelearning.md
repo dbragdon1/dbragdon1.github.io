@@ -81,56 +81,56 @@ class ActiveLearner():
 For each step in the Active Learning process, we need to find the most confusing points.
 
 ```python
-    def step(self, num_items):
-        #get prediction probabilities for unlabeled data
-        probas = self.model.predict_proba(self.unlabeled)
-        #find most confusing points
-        idxs = self.sampler(probas)
-        #get top most confusing points
-        top_idxs = idxs[:num_items]
-        #return indexes and rows
-        return top_idxs, self.unlabeled[top_idxs]
+def step(self, num_items):
+    #get prediction probabilities for unlabeled data
+    probas = self.model.predict_proba(self.unlabeled)
+    #find most confusing points
+    idxs = self.sampler(probas)
+    #get top most confusing points
+    top_idxs = idxs[:num_items]
+    #return indexes and rows
+    return top_idxs, self.unlabeled[top_idxs]
 ```
 
 Now that we have used `step()` to find the most confusing points, we can provide the labels to these points and retrain the model.
 
 ```python
-   def learn(self, data, target):
-        #Add newly labeled points to X_train
-        self.X_train = np.concatenate((self.X_train, np.array(data)))
-        #Add new labels to Y_train
-        self.Y_train = np.concatenate((self.Y_train, np.array(target)))
-        #Refit model with new labels
-        self.model.fit(self.X_train, self.Y_train)
+def learn(self, data, target):
+    #Add newly labeled points to X_train
+    self.X_train = np.concatenate((self.X_train, np.array(data)))
+    #Add new labels to Y_train
+    self.Y_train = np.concatenate((self.Y_train, np.array(target)))
+    #Refit model with new labels
+    self.model.fit(self.X_train, self.Y_train)
 ```
 
 But we haven't given any labels to the model yet. The next function will allow us to do this by passing labels to the command line:
 
 ```python
-    def train(self, num_items):
-        #find most confusing points
-        idxs, vals = self.step(num_items)
-        #print confusing points to terminal
-        for i, val in enumerate(vals):
-            print(i + 1, '---', val)
-        #begin process for entering labels into command line
-        #contains some statements for making sure input is allowed
-        while True:
-            print('\n')
-            labels = input('Enter Labels: ').split()
-            if labels[0] == 'end':
-                labels = []
-                break
-            if len(labels) != num_items:
-                print('\nError: Number of provided labels does not match.')
-                continue
-            if not all(val.isnumeric() for val in labels):
-                print('\nError: Labels must be numeric.')
-                continue
-            else:
-                break
-        if len(labels) == 0:
-            pass
+def train(self, num_items):
+    #find most confusing points
+    idxs, vals = self.step(num_items)
+    #print confusing points to terminal
+    for i, val in enumerate(vals):
+        print(i + 1, '---', val)
+    #begin process for entering labels into command line
+    #contains some statements for making sure input is allowed
+    while True:
+        print('\n')
+        labels = input('Enter Labels: ').split()
+        if labels[0] == 'end':
+            labels = []
+            break
+        if len(labels) != num_items:
+            print('\nError: Number of provided labels does not match.')
+            continue
+        if not all(val.isnumeric() for val in labels):
+            print('\nError: Labels must be numeric.')
+            continue
+        else:
+            break
+    if len(labels) == 0:
+        pass
 ```
 
 ## Active Learning on Yelp Dataset
