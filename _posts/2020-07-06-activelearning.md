@@ -1,3 +1,8 @@
+---
+layout: post
+title: Implementing Active Learning to Improve Classification Models
+---
+
 # Active Learning
 
 When building supervised learning models, I often find myself working with data that falls into one of the following categories:
@@ -37,14 +42,14 @@ Here, The model is pretty confident about classifying `Point 2` as `1`. But look
 In python, we can calculate margin sampling with the following function:
 
 ```python
-    def margin(probs):
-        #First, sort columns in ascending order
-        probs = np.sort(probs, axis = 1)
-        #find the difference between the last and second-to-last probability
-        diff = probs[:,-1] - probs[:,-2]
-        #return sorted locations of differences
-        idxs = np.argsort(diff)
-        return idxs
+def margin(probs):
+    #First, sort columns in ascending order
+    probs = np.sort(probs, axis = 1)
+    #find the difference between the last and second-to-last probability
+    diff = probs[:,-1] - probs[:,-2]
+    #return sorted locations of differences
+    idxs = np.argsort(diff)
+    return idxs
 ```
 
 Running `margin()` on our previous example will return something like
