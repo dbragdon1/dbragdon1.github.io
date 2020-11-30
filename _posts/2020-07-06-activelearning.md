@@ -224,7 +224,7 @@ At each iteration, we come across a list of examples to be labeled:
 
 We can then enter the labels into the terminal as a list of integers:
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/firstlabels.PNG)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/firslabels.PNG)
 
 Take a look at some of the examples we come across when training:
 
