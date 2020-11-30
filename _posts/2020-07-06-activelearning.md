@@ -220,21 +220,21 @@ for i in range(iterations):
 ```
 At each iteration, we come across a list of examples to be labeled:
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/firstsamples.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/firstsamples.PNG)
 
 We can then enter the labels into the terminal as a list of integers:
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/firstlabels.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/firstlabels.PNG)
 
 Take a look at some of the examples we come across when training:
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/secondsamples.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/secondsamples.PNG)
 
 You can often tell right away when the model is struggling with certain vocabulary. In the above example, the model probably isn't sure what "waited" means in the context of restaurant reviews. 
 
 Below is another example that shows where the model is getting confused:
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/confusing2.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/confusing2.PNG)
 
 This is an ambiguous statement and seems positive at first, but is really holds a negative sentiment towards the target restaurant. 
 
