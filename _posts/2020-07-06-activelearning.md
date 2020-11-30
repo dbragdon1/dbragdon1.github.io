@@ -16,6 +16,7 @@ I was recently tasked with building a sentiment analysis model for a dataset tha
 
 - Active learning lets you start out with a small labeled subset of data
 - Active learning allows you to diagnose where the model is struggling or confused, so that you can directly tell the model the correct answer
+- Bulding on the last point, Active Learning allows you to intelligently label points, rather than making you go through the dataset aimlessly.
 
 Here I'm going to show you a general breakdown of the active learning process.
 
@@ -236,7 +237,50 @@ Below is another example that shows where the model is getting confused:
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/confusing2.PNG)
 
-This is an ambiguous statement and seems positive at first, but is really holds a negative sentiment towards the target restaurant. 
+This is an ambiguous statement and seems positive at first, but is really holds a negative sentiment towards the target restaurant. It's no wonder that a model as simple as this would be confused with such a statement. 
+
+Now that we've added 50 new labeled points, lets see how our model has improved over the course of training.
+
+```python
+import matplotlib.pyplot as plt 
+
+x_plot = np.arange(0, 60, 10)
+plt.style.use('seaborn')
+plt.figure(figsize=(12,6))
+plt.plot(x_plot, [base_acc] + accs)
+plt.xlabel('Number of Labeled Samples')
+plt.ylabel('Balanced Accuracy')
+plt.show()
+```
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/activelearning-images/results.PNG)
+
+As you can see, model performance has increased to around 75% after only labeling 50 points. This is pretty good for just labeling 50 more points.
+
+We can even compare our model after Active Learning with a model that simply used 50 extra randomly sampled datapoints. Let's construct a second model in the exact same way as the first and see how it performs. 
+
+
+```python
+#sample 50 more datapoints randomly for train set
+X_train_2, X_test_2, Y_train_2, Y_test_2 = train_test_split(X, y, train_size = 0.25, random_state = 2020)
+
+second_pipe_model = Pipeline([('vectorizer', vectorizer),
+                       ('logreg', logregmodel)])
+
+second_pipe_model.fit(X_train_2, Y_train_2.astype(int))
+second_preds = second_pipe_model.predict(X_test_2)
+balanced_accuracy_score(second_preds, Y_test_2.astype(int))
+```
+
+```
+0.7207772601794341
+```
+
+So here we see that the resulting accuracy from randomly sampling 50 more points ends up with worse overall balanced accuracy than when we had iteratively selected new points using Active Learning. Very interesting! Of course this isn't an exhaustive comparison between both models. We would probably have to employ some sort of cross-validation if we wanted to be sure of the difference in performance. But this is interesting nonetheless. 
+
+
+
+
 
 
 
