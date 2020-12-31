@@ -172,7 +172,7 @@ def tsne_plot_similar_words(labels, embedding_clusters, word_clusters, a):
 
 And now we finally come across an interesting visualization like this:
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/hsimg.PNG)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/hsimg.png)
 
 We can immediately see that the clusters referring to very neutral words like "twitter" and "facebook" are quite distanced from hate speech words. On the other hand, we also see that words like "white" and "black" are positioned very closely to our hate speech clusters. This is likely because words like "white" and "black" are used in both negative and positive contexts quite frequently. 
 
