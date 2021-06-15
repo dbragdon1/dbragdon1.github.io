@@ -8,5 +8,10 @@
 @import "minimal-mistakes"; // main partials
 
 .initial-content {
-    margin-left: 30px;
+    margin: 1em;
+}
+
+.masthead__inner-wrap {
+    margin-left: 0;
+    margin-right: 0;
 }
